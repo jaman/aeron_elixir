@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Aeron.Client" Version="1.52.2" />
+  </ItemGroup>
+</Project>

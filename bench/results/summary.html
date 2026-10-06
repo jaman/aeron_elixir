@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8">
+<title>Aeron Elixir Benchmark — 2026-10-06T02:21:21.989113Z</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; margin: 2rem; }
+  table { border-collapse: collapse; margin-bottom: 2rem; }
+  th, td { border: 1px solid #ccc; padding: 0.4rem 0.8rem; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th { background: #f0f0f0; }
+  .client-elixir { background: #fde8e8; }
+  .failed { color: #c00; font-style: italic; }
+  h2 { border-bottom: 2px solid #888; padding-bottom: 0.3rem; }
+  .meta { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
+</style>
+</head><body>
+<h1>Aeron Elixir Benchmark</h1>
+<div class="meta">Run at 2026-10-06T02:21:21.989113Z — OTP 28 / Elixir 1.19.5<br>Darwin MacBook-Pro.local 27.0.0 Darwin Kernel Version 27.0.0: Tue Aug 11 21:05:42 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6031 arm64</div>
+<h2>LATENCY</h2>
+<table>
+<thead><tr><th>payload (B)</th><th>client</th><th>ops/sec</th><th>mean</th><th>median</th><th>p99</th></tr></thead>
+<tbody>
+<tr class="client-c"><td>32</td><td>c</td><td>23.44M</td><td>—</td><td>0.02us</td><td>0.04us</td><td>0.04us</td></tr>
+<tr class="client-cpp"><td>32</td><td>cpp</td><td>14.29M</td><td>—</td><td>0.04us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-dotnet"><td>32</td><td>dotnet</td><td>17.36M</td><td>—</td><td>0.03us</td><td>0.04us</td><td>0.04us</td></tr>
+<tr class="client-elixir_raw"><td>32</td><td>elixir_raw</td><td>4.26M</td><td>—</td><td>0.19us</td><td>0.13us</td><td>0.25us</td></tr>
+<tr class="client-go"><td>32</td><td>go</td><td>7.39M</td><td>—</td><td>0.07us</td><td>0.08us</td><td>0.13us</td></tr>
+<tr class="client-java"><td>32</td><td>java</td><td>13.92M</td><td>—</td><td>0.03us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-python"><td>32</td><td>python</td><td>2.58M</td><td>—</td><td>0.31us</td><td>0.29us</td><td>0.42us</td></tr>
+<tr class="client-rust"><td>32</td><td>rust</td><td>14.38M</td><td>—</td><td>0.03us</td><td>0.04us</td><td>0.04us</td></tr>
+<tr class="client-c"><td>256</td><td>c</td><td>21.73M</td><td>—</td><td>0.03us</td><td>0.04us</td><td>0.04us</td></tr>
+<tr class="client-cpp"><td>256</td><td>cpp</td><td>13.59M</td><td>—</td><td>0.04us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-dotnet"><td>256</td><td>dotnet</td><td>15.15M</td><td>—</td><td>0.04us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-elixir_raw"><td>256</td><td>elixir_raw</td><td>3.47M</td><td>—</td><td>0.24us</td><td>0.17us</td><td>0.33us</td></tr>
+<tr class="client-go"><td>256</td><td>go</td><td>7.04M</td><td>—</td><td>0.08us</td><td>0.08us</td><td>0.13us</td></tr>
+<tr class="client-java"><td>256</td><td>java</td><td>13.01M</td><td>—</td><td>0.04us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-python"><td>256</td><td>python</td><td>2.54M</td><td>—</td><td>0.31us</td><td>0.29us</td><td>0.42us</td></tr>
+<tr class="client-rust"><td>256</td><td>rust</td><td>13.81M</td><td>—</td><td>0.03us</td><td>0.04us</td><td>0.04us</td></tr>
+<tr class="client-c"><td>1024</td><td>c</td><td>16.77M</td><td>—</td><td>0.04us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-cpp"><td>1024</td><td>cpp</td><td>11.55M</td><td>—</td><td>0.05us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-dotnet"><td>1024</td><td>dotnet</td><td>12.56M</td><td>—</td><td>0.05us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-elixir_raw"><td>1024</td><td>elixir_raw</td><td>3.20M</td><td>—</td><td>0.27us</td><td>0.17us</td><td>0.38us</td></tr>
+<tr class="client-go"><td>1024</td><td>go</td><td>6.10M</td><td>—</td><td>0.10us</td><td>0.08us</td><td>0.17us</td></tr>
+<tr class="client-java"><td>1024</td><td>java</td><td>10.30M</td><td>—</td><td>0.05us</td><td>0.04us</td><td>0.08us</td></tr>
+<tr class="client-python"><td>1024</td><td>python</td><td>2.40M</td><td>—</td><td>0.34us</td><td>0.33us</td><td>0.46us</td></tr>
+<tr class="client-rust"><td>1024</td><td>rust</td><td>11.90M</td><td>—</td><td>0.05us</td><td>0.04us</td><td>0.08us</td></tr>
+</tbody>
+</table>
+
+<h2>THROUGHPUT</h2>
+<table>
+<thead><tr><th>payload (B)</th><th>client</th><th>ops/sec</th><th>bytes/sec</th><th>mean</th><th>median</th><th>p99</th></tr></thead>
+<tbody>
+<tr class="client-c"><td>32</td><td>c</td><td>98.66M</td><td>3.16GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-cpp"><td>32</td><td>cpp</td><td>60.00M</td><td>1.92GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-dotnet"><td>32</td><td>dotnet</td><td>55.94M</td><td>1.79GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-elixir_raw"><td>32</td><td>elixir_raw</td><td>9.73M</td><td>311.52MB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-go"><td>32</td><td>go</td><td>25.62M</td><td>819.87MB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-java"><td>32</td><td>java</td><td>60.18M</td><td>1.93GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-python"><td>32</td><td>python</td><td>3.21M</td><td>102.77MB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-rust"><td>32</td><td>rust</td><td>94.12M</td><td>3.01GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-c"><td>256</td><td>c</td><td>72.71M</td><td>18.61GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-cpp"><td>256</td><td>cpp</td><td>47.97M</td><td>12.28GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-dotnet"><td>256</td><td>dotnet</td><td>36.98M</td><td>9.47GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-elixir_raw"><td>256</td><td>elixir_raw</td><td>6.04M</td><td>1.55GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-go"><td>256</td><td>go</td><td>22.90M</td><td>5.86GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-java"><td>256</td><td>java</td><td>30.22M</td><td>7.74GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-python"><td>256</td><td>python</td><td>3.10M</td><td>792.44MB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-rust"><td>256</td><td>rust</td><td>68.68M</td><td>17.58GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-c"><td>1024</td><td>c</td><td>32.71M</td><td>33.50GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-cpp"><td>1024</td><td>cpp</td><td>26.49M</td><td>27.13GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-dotnet"><td>1024</td><td>dotnet</td><td>22.52M</td><td>23.06GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-elixir_raw"><td>1024</td><td>elixir_raw</td><td>4.09M</td><td>4.19GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-go"><td>1024</td><td>go</td><td>16.45M</td><td>16.85GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-java"><td>1024</td><td>java</td><td>23.39M</td><td>23.96GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-python"><td>1024</td><td>python</td><td>2.88M</td><td>2.95GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+<tr class="client-rust"><td>1024</td><td>rust</td><td>31.97M</td><td>32.74GB/s</td><td>0.00us</td><td>0.00us</td><td>0.00us</td></tr>
+</tbody>
+</table>
+
+</body></html>

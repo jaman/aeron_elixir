@@ -1,0 +1,10 @@
+aeron_elixir
+Copyright 2026 Jarius Jenkins
+
+Licensed under the Apache License, Version 2.0 (LICENSE).
+
+The bundled media driver is built from the Aeron 1.51.0 C client and media
+driver sources, Copyright 2014-2025 Real Logic Limited and Copyright 2026
+Adaptive Financial Consulting Limited, licensed under the Apache License,
+Version 2.0. The build downloads them, with their LICENSE, from
+https://github.com/aeron-io/aeron.

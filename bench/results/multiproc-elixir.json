@@ -1,0 +1,115 @@
+{
+  "cells": [
+    {
+      "bytes_per_sec": 2464818583.795354,
+      "client": "elixir",
+      "ops_per_sec": 9628197.592950601,
+      "payload_size": 256,
+      "received": 48141000,
+      "samples": 48141000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 5053872401.509676,
+      "client": "elixir",
+      "ops_per_sec": 19741689.06839717,
+      "payload_size": 256,
+      "received": 98710000,
+      "samples": 98710000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 9772337965.88973,
+      "client": "elixir",
+      "ops_per_sec": 38173195.17925676,
+      "payload_size": 256,
+      "received": 190870000,
+      "samples": 190870000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 18970511142.15041,
+      "client": "elixir",
+      "ops_per_sec": 74103559.14902504,
+      "payload_size": 256,
+      "received": 370527000,
+      "samples": 370527000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 22072723369.212994,
+      "client": "elixir",
+      "ops_per_sec": 86221575.66098826,
+      "payload_size": 256,
+      "received": 431131000,
+      "samples": 431131000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    },
+    {
+      "bytes_per_sec": 327930222.9188489,
+      "client": "elixir",
+      "ops_per_sec": 10247819.466214027,
+      "payload_size": 32,
+      "received": 51240000,
+      "samples": 51240000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 628810103.2557602,
+      "client": "elixir",
+      "ops_per_sec": 19650315.726742506,
+      "payload_size": 32,
+      "received": 98253000,
+      "samples": 98253000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 1312590259.364986,
+      "client": "elixir",
+      "ops_per_sec": 41018445.60515581,
+      "payload_size": 32,
+      "received": 205096000,
+      "samples": 205096000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 2385937838.545501,
+      "client": "elixir",
+      "ops_per_sec": 74560557.45454691,
+      "payload_size": 32,
+      "received": 372816000,
+      "samples": 372816000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 3136608554.691931,
+      "client": "elixir",
+      "ops_per_sec": 98019017.33412284,
+      "payload_size": 32,
+      "received": 490107000,
+      "samples": 490107000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    }
+  ],
+  "run_at": "2026-10-06T02:22:39.263045Z"
+}

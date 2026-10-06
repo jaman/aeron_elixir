@@ -1,0 +1,125 @@
+{
+  "cells": [
+    {
+      "bytes_per_sec": 9868004945.878,
+      "client": "dotnet",
+      "elapsed_ms": 5000.014,
+      "ops_per_sec": 38546894.32,
+      "payload_size": 256,
+      "received": 192735000,
+      "samples": 192735000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 19328653819.514,
+      "client": "dotnet",
+      "elapsed_ms": 5000.016,
+      "ops_per_sec": 75502553.982,
+      "payload_size": 256,
+      "received": 377514000,
+      "samples": 377514000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 30838449678.511,
+      "client": "dotnet",
+      "elapsed_ms": 5000.021,
+      "ops_per_sec": 120462694.057,
+      "payload_size": 256,
+      "received": 602316000,
+      "samples": 602316000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 40601905479.334,
+      "client": "dotnet",
+      "elapsed_ms": 5000.057,
+      "ops_per_sec": 158601193.279,
+      "payload_size": 256,
+      "received": 793015000,
+      "samples": 793015000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 43594348705.555,
+      "client": "dotnet",
+      "elapsed_ms": 5000.058,
+      "ops_per_sec": 170290424.631,
+      "payload_size": 256,
+      "received": 851462000,
+      "samples": 851462000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    },
+    {
+      "bytes_per_sec": 1856593606.3,
+      "client": "dotnet",
+      "elapsed_ms": 5000.004,
+      "ops_per_sec": 58018550.197,
+      "payload_size": 32,
+      "received": 290093000,
+      "samples": 290093000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 3646671730.101,
+      "client": "dotnet",
+      "elapsed_ms": 5000.031,
+      "ops_per_sec": 113958491.566,
+      "payload_size": 32,
+      "received": 569796000,
+      "samples": 569796000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 6979651323.745,
+      "client": "dotnet",
+      "elapsed_ms": 5000.016,
+      "ops_per_sec": 218114103.867,
+      "payload_size": 32,
+      "received": 1090574000,
+      "samples": 1090574000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 9472216143.38,
+      "client": "dotnet",
+      "elapsed_ms": 5000.024,
+      "ops_per_sec": 296006754.481,
+      "payload_size": 32,
+      "received": 1480041000,
+      "samples": 1480041000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 10242799702.809,
+      "client": "dotnet",
+      "elapsed_ms": 5000.149,
+      "ops_per_sec": 320087490.713,
+      "payload_size": 32,
+      "received": 1600485000,
+      "samples": 1600485000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    }
+  ],
+  "run_at": "2026-10-06T00:58:45.745176Z"
+}

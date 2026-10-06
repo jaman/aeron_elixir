@@ -1,0 +1,125 @@
+{
+  "cells": [
+    {
+      "bytes_per_sec": 9433671998.737211,
+      "client": "java",
+      "elapsed_ms": 5000.04325,
+      "ops_per_sec": 36850281.24506723,
+      "payload_size": 256,
+      "received": 184253000,
+      "samples": 184253000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 16841807273.085451,
+      "client": "java",
+      "elapsed_ms": 5000.067667,
+      "ops_per_sec": 65788309.66049004,
+      "payload_size": 256,
+      "received": 328946000,
+      "samples": 328946000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 27837860488.852375,
+      "client": "java",
+      "elapsed_ms": 5000.062417,
+      "ops_per_sec": 108741642.53457959,
+      "payload_size": 256,
+      "received": 543715000,
+      "samples": 543715000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 40071479402.86233,
+      "client": "java",
+      "elapsed_ms": 5000.06975,
+      "ops_per_sec": 156529216.41743097,
+      "payload_size": 256,
+      "received": 782657000,
+      "samples": 782657000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 39949142030.88587,
+      "client": "java",
+      "elapsed_ms": 5007.4355,
+      "ops_per_sec": 156051336.05814794,
+      "payload_size": 256,
+      "received": 781417000,
+      "samples": 781417000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    },
+    {
+      "bytes_per_sec": 1945300260.075075,
+      "client": "java",
+      "elapsed_ms": 5000.046625,
+      "ops_per_sec": 60790633.12734609,
+      "payload_size": 32,
+      "received": 303956000,
+      "samples": 303956000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 3343875177.625204,
+      "client": "java",
+      "elapsed_ms": 5000.052667,
+      "ops_per_sec": 104496099.30078763,
+      "payload_size": 32,
+      "received": 522486000,
+      "samples": 522486000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 5130098542.911889,
+      "client": "java",
+      "elapsed_ms": 5000.050542,
+      "ops_per_sec": 160315579.46599653,
+      "payload_size": 32,
+      "received": 801586000,
+      "samples": 801586000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 10374806608.564548,
+      "client": "java",
+      "elapsed_ms": 5000.050792,
+      "ops_per_sec": 324212706.51764214,
+      "payload_size": 32,
+      "received": 1621080000,
+      "samples": 1621080000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 11266211165.20468,
+      "client": "java",
+      "elapsed_ms": 5000.061083,
+      "ops_per_sec": 352069098.91264623,
+      "payload_size": 32,
+      "received": 1760367000,
+      "samples": 1760367000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    }
+  ],
+  "run_at": "2026-10-06T00:58:45.746245Z"
+}

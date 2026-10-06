@@ -1,0 +1,125 @@
+{
+  "cells": [
+    {
+      "bytes_per_sec": 16891923527.643,
+      "client": "rust",
+      "elapsed_ms": 5000.009,
+      "ops_per_sec": 65984076.28,
+      "payload_size": 256,
+      "received": 329921000,
+      "samples": 329921000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 33588663531.658,
+      "client": "rust",
+      "elapsed_ms": 5000.003,
+      "ops_per_sec": 131205716.921,
+      "payload_size": 256,
+      "received": 656029000,
+      "samples": 656029000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 54982916354.464,
+      "client": "rust",
+      "elapsed_ms": 5000.009,
+      "ops_per_sec": 214777017.01,
+      "payload_size": 256,
+      "received": 1073887000,
+      "samples": 1073887000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 67376019501.509,
+      "client": "rust",
+      "elapsed_ms": 5000.023,
+      "ops_per_sec": 263187576.178,
+      "payload_size": 256,
+      "received": 1315944000,
+      "samples": 1315944000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 56526756655.65,
+      "client": "rust",
+      "elapsed_ms": 5000.742,
+      "ops_per_sec": 220807643.186,
+      "payload_size": 256,
+      "received": 1104202000,
+      "samples": 1104202000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    },
+    {
+      "bytes_per_sec": 2932050587.708,
+      "client": "rust",
+      "elapsed_ms": 5000.012,
+      "ops_per_sec": 91626580.866,
+      "payload_size": 32,
+      "received": 458134000,
+      "samples": 458134000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 1
+    },
+    {
+      "bytes_per_sec": 5824026606.346,
+      "client": "rust",
+      "elapsed_ms": 5000.01,
+      "ops_per_sec": 182000831.448,
+      "payload_size": 32,
+      "received": 910006000,
+      "samples": 910006000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 2
+    },
+    {
+      "bytes_per_sec": 10950184183.349,
+      "client": "rust",
+      "elapsed_ms": 5000.011,
+      "ops_per_sec": 342193255.73,
+      "payload_size": 32,
+      "received": 1710970000,
+      "samples": 1710970000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 4
+    },
+    {
+      "bytes_per_sec": 18981374757.738,
+      "client": "rust",
+      "elapsed_ms": 5000.015,
+      "ops_per_sec": 593167961.179,
+      "payload_size": 32,
+      "received": 2965849000,
+      "samples": 2965849000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 8
+    },
+    {
+      "bytes_per_sec": 21128718259.884,
+      "client": "rust",
+      "elapsed_ms": 5000.027,
+      "ops_per_sec": 660272445.621,
+      "payload_size": 32,
+      "received": 3301380000,
+      "samples": 3301380000,
+      "scenario": "throughput",
+      "status": "ok",
+      "workers": 12
+    }
+  ],
+  "run_at": "2026-10-06T01:35:14.659132Z"
+}
