@@ -38,7 +38,7 @@
 
 - Max line length: 120 characters
 - Credo runs in strict mode
-- Dialyzer PLT at `priv/plts/dialyzer.plt`
+- Dialyzer PLT at `_build/plts/dialyzer.plt`
 - No comments in code; documentation lives in `@moduledoc` and `@doc` only
 
 ## Key Modules

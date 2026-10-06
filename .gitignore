@@ -6,15 +6,12 @@
 erl_crash.dump
 *.ez
 aeron_elixir-*.tar
-/priv/plts/
-/priv/lib/
 /bench/python/.venv/
 /bench/c/build/
 /bench/cpp/build/
 /bench/java/out/
 /bench/results/latency-*.json
 /bench/results/throughput-*.json
-/priv/bin/
 /bench/go/build/
 /bench/dotnet/build/
 /bench/dotnet/*/bin/

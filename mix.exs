@@ -4,14 +4,14 @@ defmodule AeronElixir.MixProject do
   def project do
     [
       app: :aeron_elixir,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.19",
       start_permanent: Mix.env() == :prod,
       compilers: Mix.compilers() ++ [:aeron_native],
       deps: deps(),
       dialyzer: [
         plt_add_apps: [:mix],
-        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+        plt_file: {:no_warn, "_build/plts/dialyzer.plt"}
       ],
       aliases: aliases(),
       description:

@@ -3,7 +3,8 @@ defmodule Mix.Tasks.Compile.AeronNative do
   Builds the native parts of aeron_elixir with the system C compiler: the NIF
   into `priv/lib/aeron_elixir_nif.so` and the bundled Aeron C media driver into
   `priv/bin/aeronmd`, both under the application's build directory
-  (`Mix.Project.app_path/0`), where `:code.priv_dir/1` finds them.
+  (`Mix.Project.app_path/0`), where `:code.priv_dir/1` finds them. A `priv`
+  link there whose target does not exist is replaced by a directory.
 
   The compiler is `$CC`, or `cc` when it is unset. The NIF is compiled from
   `c_src/aeron_elixir_nif.c` against the running VM's `erl_nif.h`. The
@@ -99,9 +100,16 @@ defmodule Mix.Tasks.Compile.AeronNative do
   defp build_when_stale(false, _label, _output, _build), do: {:noop, []}
 
   defp build_when_stale(true, label, output, build) do
+    remove_broken_priv_link(Path.join(Mix.Project.app_path(), "priv"))
     File.mkdir_p!(Path.dirname(output))
     build_result(build.(), label, output)
   end
+
+  defp remove_broken_priv_link(priv),
+    do: remove_broken_link(priv, File.lstat(priv), File.exists?(priv))
+
+  defp remove_broken_link(path, {:ok, %File.Stat{type: :symlink}}, false), do: File.rm!(path)
+  defp remove_broken_link(_path, _lstat, _exists), do: :ok
 
   defp compile(args), do: System.cmd(compiler(), args, stderr_to_stdout: true)
 
