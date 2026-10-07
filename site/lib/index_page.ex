@@ -12,7 +12,7 @@ defmodule AeronElixirSite.IndexPage do
 
   import AeronElixirSite.Chrome, only: [code: 1, rich: 1]
 
-  alias AeronElixirSite.{Chart, Chrome, Docs, Explorer}
+  alias AeronElixirSite.{Chart, Chrome, Compare, Docs, Explorer}
 
   @explorer_script_path Path.expand("../assets/explorer.js", __DIR__)
   @external_resource @explorer_script_path
@@ -94,12 +94,12 @@ defmodule AeronElixirSite.IndexPage do
     other: "Other"
   ]
 
-  attr :results, :map, required: true
-  attr :highlights, :list, required: true
-  attr :examples, :list, required: true
-  attr :mapping, :list, required: true
-  attr :requirement, :string, required: true
-  attr :explorer, :list, required: true
+  attr(:results, :map, required: true)
+  attr(:highlights, :list, required: true)
+  attr(:examples, :list, required: true)
+  attr(:mapping, :list, required: true)
+  attr(:requirement, :string, required: true)
+  attr(:explorer, :list, required: true)
 
   def render(assigns) do
     assigns =
@@ -239,6 +239,7 @@ defmodule AeronElixirSite.IndexPage do
           The same encode-offer-poll-decode work in every client, against one C media driver, with every message distinct. Hover a bar for its percentiles.
         </p>
         <div class="explorer" data-explorer>
+          <.compare clients={Compare.clients(@results)} />
           <div class="tabs" role="tablist">
             <button
               :for={tab <- @explorer}
@@ -384,7 +385,7 @@ defmodule AeronElixirSite.IndexPage do
     """
   end
 
-  attr :view, :map, required: true
+  attr(:view, :map, required: true)
 
   defp chart_panel(assigns) do
     ~H"""
@@ -392,7 +393,13 @@ defmodule AeronElixirSite.IndexPage do
       <div class="chart-head">
         <h3>{@view.chart.title}</h3>
         <ul class="legend">
-          <li :for={{family, label} <- families(@view.chart)}><span class={"swatch fam-#{family}"}></span>{label}</li>
+          <li
+            :for={{family, label} <- families(@view.chart)}
+            data-legend-family={family}
+            hidden={not family_shown_by_default?(@view.chart, family)}
+          >
+            <span class={"swatch fam-#{family}"}></span>{label}
+          </li>
         </ul>
       </div>
       <.bars chart={@view.chart} />
@@ -407,18 +414,73 @@ defmodule AeronElixirSite.IndexPage do
     """
   end
 
-  attr :chart, Chart, required: true
+  attr(:clients, :list, required: true)
+
+  defp compare(assigns) do
+    ~H"""
+    <div class="compare" data-compare>
+      <span class="chip chip-fixed"><span class="swatch fam-elixir"></span>aeron_elixir</span>
+      <span class="compare-label">compared with</span>
+      <button
+        :for={client <- @clients}
+        type="button"
+        class="chip"
+        data-chip={client.key}
+        aria-label={"Remove #{client.name}"}
+        hidden={not Compare.shown_by_default?(client)}
+      >
+        <span class={"swatch fam-#{client.family}"}></span>{client.name}
+        <span class="chip-remove" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </span>
+      </button>
+      <div class="compare-add">
+        <button
+          type="button"
+          class="compare-toggle"
+          data-compare-toggle
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="compare-options"
+        >
+          + Add client
+        </button>
+        <div class="compare-options" id="compare-options" data-compare-options role="group" aria-label="Clients to compare" hidden>
+          <label :for={client <- @clients} class="compare-option">
+            <input type="checkbox" value={client.key} checked={Compare.shown_by_default?(client)} />
+            <span class={"swatch fam-#{client.family}"}></span>{client.name}
+            <span class="compare-option-variant">{client.variant}</span>
+          </label>
+          <div class="compare-shortcuts">
+            <button type="button" data-compare-all="all">Show all</button>
+            <button type="button" data-compare-all="none">Only aeron_elixir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  attr(:chart, Chart, required: true)
 
   defp bars(assigns) do
     ~H"""
     <ol class="bars">
-      <li :for={row <- @chart.rows} class={"bar-row fam-#{row.client.family}"} tabindex="0">
+      <li
+        :for={row <- @chart.rows}
+        class={"bar-row fam-#{row.client.family}"}
+        tabindex="0"
+        data-client={row.client.key}
+        data-family={row.client.family}
+        data-value={row.value}
+        hidden={not Compare.shown_by_default?(row.client)}
+      >
         <div class="bar-label">
           <span class="bar-name">{row.client.name}</span>
           <span class="bar-variant">{row.client.variant}</span>
         </div>
         <div class="bar-track">
-          <span class="bar" style={"width: calc((100% - 6.5rem) * #{row.width})"}></span>
+          <span class="bar" style={"width: calc((100% - 6.5rem) * #{Compare.width(@chart, row)})"}></span>
           <span class="bar-value">{row.display}</span>
         </div>
         <div class="tip" role="tooltip">
@@ -433,12 +495,16 @@ defmodule AeronElixirSite.IndexPage do
     """
   end
 
-  attr :chart, Chart, required: true
+  attr(:chart, Chart, required: true)
 
   defp table(assigns) do
     assigns =
       assign(assigns,
-        columns: assigns.chart.rows |> List.first(%{details: []}) |> Map.fetch!(:details) |> Enum.map(&elem(&1, 0))
+        columns:
+          assigns.chart.rows
+          |> List.first(%{details: []})
+          |> Map.fetch!(:details)
+          |> Enum.map(&elem(&1, 0))
       )
 
     ~H"""
@@ -452,7 +518,13 @@ defmodule AeronElixirSite.IndexPage do
           </tr>
         </thead>
         <tbody>
-          <tr :for={row <- @chart.rows} class={"fam-#{row.client.family}"}>
+          <tr
+            :for={row <- @chart.rows}
+            class={"fam-#{row.client.family}"}
+            data-client={row.client.key}
+            data-family={row.client.family}
+            hidden={not Compare.shown_by_default?(row.client)}
+          >
             <td><span class="swatch"></span>{row.client.name}</td>
             <td>{row.client.variant}</td>
             <td :for={{_label, value} <- row.details}>{value}</td>
@@ -475,6 +547,13 @@ defmodule AeronElixirSite.IndexPage do
     present = MapSet.new(chart.rows, & &1.client.family)
     Enum.filter(@family_labels, fn {family, _label} -> MapSet.member?(present, family) end)
   end
+
+  defp family_shown_by_default?(chart, family),
+    do:
+      Enum.any?(
+        chart.rows,
+        &(&1.client.family == family and Compare.shown_by_default?(&1.client))
+      )
 
   defp option_pressed?(default, control, value), do: Map.fetch!(default, control.field) == value
 

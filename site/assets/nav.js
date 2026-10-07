@@ -22,7 +22,7 @@
     function sectionInView() {
       var root = document.documentElement;
       if (window.innerHeight + window.scrollY >= root.scrollHeight - 2) { return entries[entries.length - 1]; }
-      var line = header.offsetHeight + 40;
+      var line = header.offsetHeight + Math.round(window.innerHeight * 0.25);
       return entries.reduce(function (found, entry) {
         return entry.section.getBoundingClientRect().top <= line ? entry : found;
       }, null);

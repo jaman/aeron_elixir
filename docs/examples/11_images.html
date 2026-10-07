@@ -244,6 +244,42 @@ pre.shell { margin-top: 0.75rem; }
 #driver .code { margin-top: 2rem; }
 .notes p { color: var(--ink-2); margin-top: 0.6rem; font-size: 0.95rem; }
 
+.compare { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin-top: 2rem; font-size: 0.85rem; color: var(--ink-3); }
+.compare-label { margin: 0 0.15rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.22rem 0.4rem 0.22rem 0.65rem;
+  border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); font-size: 0.82rem; line-height: 1.4;
+}
+.chip .swatch { margin: 0; }
+.chip-fixed { padding-right: 0.7rem; font-weight: 600; }
+button.chip { cursor: pointer; transition: border-color 0.2s ease; }
+button.chip:hover, button.chip:focus-visible { border-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); outline: none; }
+.chip-remove { display: inline-grid; place-items: center; width: 1.1rem; height: 1.1rem; border-radius: 999px; color: var(--ink-3); }
+button.chip:hover .chip-remove, button.chip:focus-visible .chip-remove { background: var(--surface-3); color: var(--ink); }
+.chip-remove svg { width: 0.7rem; height: 0.7rem; }
+.chip[hidden] { display: none; }
+.compare-add { display: contents; }
+.compare-toggle {
+  border: 1px dashed color-mix(in srgb, var(--ink-3) 55%, transparent); border-radius: 999px; background: none; cursor: pointer;
+  padding: 0.22rem 0.75rem; font-size: 0.82rem; line-height: 1.4; color: var(--ink-2); transition: color 0.2s ease, border-color 0.2s ease;
+}
+.compare-toggle:hover, .compare-toggle[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+.compare-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.compare-options {
+  position: absolute; left: 0; top: calc(100% + 0.45rem); z-index: 5; min-width: 17rem; max-width: 100%; padding: 0.35rem;
+  display: grid; gap: 2px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; box-shadow: var(--shadow);
+}
+.compare-options[hidden] { display: none; }
+.compare-option { display: flex; align-items: center; gap: 0.6rem; padding: 0.4rem 0.55rem; border-radius: 6px; cursor: pointer; color: var(--ink); }
+.compare-option:hover, .compare-option:focus-within { background: var(--surface-2); }
+.compare-option input { accent-color: var(--accent); margin: 0; }
+.compare-option .swatch { margin: 0; }
+.compare-option-variant { margin-left: auto; padding-left: 0.8rem; font-size: 0.75rem; color: var(--ink-3); white-space: nowrap; }
+@media (max-width: 560px) { .compare-option-variant { display: none; } }
+.compare-shortcuts { display: flex; gap: 1rem; padding: 0.45rem 0.55rem 0.25rem; margin-top: 0.2rem; border-top: 1px solid var(--rule); }
+.compare-shortcuts button { border: 0; background: none; padding: 0; cursor: pointer; font-size: 0.8rem; color: var(--accent); }
+.compare-shortcuts button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.bar-row[hidden], .data tr[hidden], .legend li[hidden] { display: none; }
 .tabs { display: flex; gap: 0.25rem; margin-top: 2.2rem; border-bottom: 1px solid var(--rule); overflow-x: auto; scrollbar-width: none; }
 .tabs button {
   background: none; border: 0; padding: 0.7rem 0.9rem; cursor: pointer; color: var(--ink-3);
@@ -344,6 +380,7 @@ a.example { text-decoration: none; color: inherit; }
 .explorer .when-table, .explorer.show-table .when-chart { display: none; }
 .explorer.show-table .when-table { display: inline; }
 .listing-head a { color: var(--accent); }
+.compare + .tabs { margin-top: 1.1rem; }
 </style>
   </head>
   <body>
@@ -532,7 +569,7 @@ a.example { text-decoration: none; color: inherit; }
     function sectionInView() {
       var root = document.documentElement;
       if (window.innerHeight + window.scrollY >= root.scrollHeight - 2) { return entries[entries.length - 1]; }
-      var line = header.offsetHeight + 40;
+      var line = header.offsetHeight + Math.round(window.innerHeight * 0.25);
       return entries.reduce(function (found, entry) {
         return entry.section.getBoundingClientRect().top <= line ? entry : found;
       }, null);

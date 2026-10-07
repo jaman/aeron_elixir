@@ -4,7 +4,7 @@ Mix.install([
 ])
 
 for module <-
-      ~w(format client results chart bench highlights explorer docs repository chrome index_page example_page builder) do
+      ~w(format client results chart compare bench highlights explorer docs repository chrome index_page example_page builder) do
   Code.require_file("lib/#{module}.ex", __DIR__)
 end
 
