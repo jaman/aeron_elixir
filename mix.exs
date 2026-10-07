@@ -18,7 +18,7 @@ defmodule AeronElixir.MixProject do
         "Aeron client for Elixir over IPC and UDP, with the Aeron C media driver built and supervised",
       package: package(),
       source_url: "https://github.com/jaman/aeron_elixir",
-      homepage_url: "https://github.com/jaman/aeron_elixir"
+      homepage_url: "https://jaman.github.io/aeron_elixir/"
     ]
   end
 
@@ -47,7 +47,10 @@ defmodule AeronElixir.MixProject do
       maintainers: ["Jarius Jenkins"],
       files: ~w(lib c_src mix.exs .formatter.exs README.md LICENSE NOTICE),
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => "https://github.com/jaman/aeron_elixir"}
+      links: %{
+        "GitHub" => "https://github.com/jaman/aeron_elixir",
+        "Website" => "https://jaman.github.io/aeron_elixir/"
+      }
     ]
   end
 

@@ -117,16 +117,53 @@ p { margin: 0; }
   border-bottom: 1px solid var(--rule);
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 3.5rem; }
-.nav nav { display: flex; gap: 1.25rem; overflow-x: auto; scrollbar-width: none; font-size: 0.9rem; }
-.nav nav a { text-decoration: none; color: var(--ink-2); white-space: nowrap; }
+.nav nav { position: relative; display: flex; align-items: center; gap: 0.15rem; overflow-x: auto; scrollbar-width: none; font-size: 0.9rem; }
+.nav nav a {
+  position: relative; z-index: 1; text-decoration: none; color: var(--ink-2); white-space: nowrap;
+  padding: 0.3rem 0.65rem; border-radius: 999px; transition: color 0.25s ease;
+}
 .nav nav a:hover { color: var(--ink); }
+.nav nav a[aria-current="location"] { color: var(--accent); }
+.nav-marker {
+  position: absolute; left: 0; top: 50%; height: 1.9rem; margin-top: -0.95rem; width: 0;
+  border-radius: 999px; pointer-events: none; opacity: 0;
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+.nav nav.has-marker .nav-marker { opacity: 1; }
+.nav nav.marker-ready .nav-marker {
+  transition: transform 0.38s cubic-bezier(0.2, 0.75, 0.25, 1), width 0.38s cubic-bezier(0.2, 0.75, 0.25, 1), opacity 0.2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav nav a, .nav nav.marker-ready .nav-marker { transition: none; }
+}
 @media (max-width: 1080px) { .nav nav { display: none; } }
-.theme { display: inline-flex; flex: none; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 8px; padding: 2px; }
-.theme button { border: 0; background: none; padding: 0.25rem 0.55rem; border-radius: 6px; cursor: pointer; font-size: 0.78rem; color: var(--ink-3); }
-.theme button:hover { color: var(--ink); }
-:root:not([data-theme]) .theme [data-theme-choice="auto"],
-:root[data-theme="light"] .theme [data-theme-choice="light"],
-:root[data-theme="dark"] .theme [data-theme-choice="dark"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.theme-menu { position: relative; flex: none; }
+.theme-toggle {
+  display: inline-grid; place-items: center; width: 2.1rem; height: 2.1rem; padding: 0; cursor: pointer;
+  border: 1px solid var(--rule); border-radius: 8px; background: var(--surface-2); color: var(--ink-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.theme-toggle:hover, .theme-toggle[aria-expanded="true"] { color: var(--ink); border-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); }
+.theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.theme-icon { width: 1.05rem; height: 1.05rem; flex: none; }
+.theme-toggle .theme-icon { display: none; }
+:root:not([data-theme]) .theme-toggle .theme-icon-auto,
+:root[data-theme="light"] .theme-toggle .theme-icon-light,
+:root[data-theme="dark"] .theme-toggle .theme-icon-dark { display: block; }
+.theme-options {
+  position: absolute; right: 0; top: calc(100% + 0.45rem); min-width: 9.5rem; padding: 0.3rem;
+  display: grid; gap: 2px; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; box-shadow: var(--shadow);
+}
+.theme-options[hidden] { display: none; }
+.theme-options button {
+  display: flex; align-items: center; gap: 0.6rem; width: 100%; border: 0; background: none; cursor: pointer;
+  padding: 0.45rem 0.6rem; border-radius: 6px; font-size: 0.85rem; color: var(--ink-2); text-align: left;
+}
+.theme-options button:hover, .theme-options button:focus-visible { background: var(--surface-2); color: var(--ink); outline: none; }
+.theme-options button[aria-checked="true"] { color: var(--accent); }
+.theme-check { margin-left: auto; width: 0.95rem; height: 0.95rem; visibility: hidden; }
+.theme-options button[aria-checked="true"] .theme-check { visibility: visible; }
 .brand { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 600; text-decoration: none; font-family: "IBM Plex Mono", monospace; }
 .mark {
   width: 1.1rem; height: 1.1rem; border-radius: 50% 50% 50% 0;
@@ -313,20 +350,25 @@ a.example { text-decoration: none; color: inherit; }
     <header class="nav">
   <div class="wrap nav-inner">
     <a href="../index.html#top" class="brand"><span class="mark" aria-hidden="true"></span>aeron_elixir</a>
-    <nav>
-      <a href="../index.html#strengths">Strengths</a>
-      <a href="../index.html#api">API</a>
-      <a href="../index.html#log">How it works</a>
-      <a href="../index.html#benchmarks">Benchmarks</a>
-      <a href="../index.html#pyaeron">From pyaeron</a>
-      <a href="../index.html#examples">Examples</a>
-      <a href="../index.html#start">Quick start</a>
-      <a href="../index.html#driver">Driver</a>
+    <nav aria-label="Sections">
+      <a href="../index.html#strengths" data-section="strengths">Strengths</a><a href="../index.html#api" data-section="api">API</a><a href="../index.html#log" data-section="log">How it works</a><a href="../index.html#benchmarks" data-section="benchmarks">Benchmarks</a><a href="../index.html#pyaeron" data-section="pyaeron">From pyaeron</a><a href="../index.html#examples" data-section="examples">Examples</a><a href="../index.html#start" data-section="start">Quick start</a><a href="../index.html#driver" data-section="driver">Driver</a>
     </nav>
-    <div class="theme" role="group" aria-label="Colour theme">
-      <button type="button" data-theme-choice="auto" onclick="aeronSetTheme('auto')">Auto</button>
-      <button type="button" data-theme-choice="light" onclick="aeronSetTheme('light')">Light</button>
-      <button type="button" data-theme-choice="dark" onclick="aeronSetTheme('dark')">Dark</button>
+    <div class="theme-menu" data-theme-menu>
+      <button type="button" class="theme-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="theme-options" aria-label="Colour theme" title="Colour theme">
+        <svg class="theme-icon theme-icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"></path></svg><svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg><svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path></svg>
+      </button>
+      <div class="theme-options" id="theme-options" role="menu" aria-label="Colour theme" hidden>
+        <button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="auto">
+          <svg class="theme-icon theme-icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" stroke="none"></path></svg>Auto
+          <svg class="theme-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </button><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="light">
+          <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"></path></svg>Light
+          <svg class="theme-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </button><button type="button" role="menuitemradio" aria-checked="false" data-theme-choice="dark">
+          <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path></svg>Dark
+          <svg class="theme-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </button>
+      </div>
     </div>
   </div>
 </header>
@@ -347,7 +389,7 @@ a.example { text-decoration: none; color: inherit; }
 
     <div class="listing-head">
       <span class="file">examples/12_udp.exs</span>
-      
+      <a href="https://github.com/jaman/aeron_elixir/blob/main/examples/12_udp.exs">View on GitHub</a>
     </div>
     <div class="listing">
       <pre class="gutter" aria-hidden="true">1
@@ -410,6 +452,139 @@ a.example { text-decoration: none; color: inherit; }
   <span class="brand"><span class="mark" aria-hidden="true"></span>aeron_elixir</span>
   <span>Aeron, without leaving the BEAM.</span>
 </footer>
+    <script>(function () {
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var bar = document.querySelector(".nav nav");
+  if (bar) { followSections(bar); }
+  themeMenu(document.querySelector("[data-theme-menu]"));
+
+  function followSections(bar) {
+    var entries = Array.prototype.slice.call(bar.querySelectorAll("a[data-section]"))
+      .map(function (link) { return { link: link, section: document.getElementById(link.getAttribute("data-section")) }; })
+      .filter(function (entry) { return entry.section; });
+    if (entries.length === 0) { return; }
+
+    var marker = document.createElement("span");
+    marker.className = "nav-marker";
+    marker.setAttribute("aria-hidden", "true");
+    bar.insertBefore(marker, bar.firstChild);
+
+    var header = document.querySelector(".nav");
+    var current = null;
+    var scheduled = false;
+
+    function sectionInView() {
+      var root = document.documentElement;
+      if (window.innerHeight + window.scrollY >= root.scrollHeight - 2) { return entries[entries.length - 1]; }
+      var line = header.offsetHeight + 40;
+      return entries.reduce(function (found, entry) {
+        return entry.section.getBoundingClientRect().top <= line ? entry : found;
+      }, null);
+    }
+
+    function placeMarker() {
+      bar.classList.toggle("has-marker", current !== null);
+      if (current === null) { return; }
+      marker.style.width = current.link.offsetWidth + "px";
+      marker.style.transform = "translateX(" + current.link.offsetLeft + "px)";
+    }
+
+    function keepVisible(link) {
+      var left = link.offsetLeft;
+      var right = left + link.offsetWidth;
+      if (left < bar.scrollLeft || right > bar.scrollLeft + bar.clientWidth) {
+        bar.scrollTo({ left: Math.max(0, left - 16), behavior: reducedMotion ? "auto" : "smooth" });
+      }
+    }
+
+    function update() {
+      scheduled = false;
+      var next = sectionInView();
+      if (next !== current) {
+        if (current) { current.link.removeAttribute("aria-current"); }
+        if (next) { next.link.setAttribute("aria-current", "location"); keepVisible(next.link); }
+        current = next;
+      }
+      placeMarker();
+    }
+
+    function schedule() {
+      if (!scheduled) { scheduled = true; window.requestAnimationFrame(update); }
+    }
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(schedule); }
+    update();
+    window.requestAnimationFrame(function () { bar.classList.add("marker-ready"); });
+  }
+
+  function themeMenu(menu) {
+    if (!menu) { return; }
+    var toggle = menu.querySelector(".theme-toggle");
+    var list = menu.querySelector(".theme-options");
+    var items = Array.prototype.slice.call(list.querySelectorAll("[data-theme-choice]"));
+
+    function chosen() { return document.documentElement.getAttribute("data-theme") || "auto"; }
+
+    function markChosen() {
+      var choice = chosen();
+      items.forEach(function (item) {
+        item.setAttribute("aria-checked", String(item.getAttribute("data-theme-choice") === choice));
+      });
+    }
+
+    function open() {
+      markChosen();
+      list.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+      (items.find(function (item) { return item.getAttribute("aria-checked") === "true"; }) || items[0]).focus({ preventScroll: true });
+    }
+
+    function close(returnFocus) {
+      if (list.hidden) { return; }
+      list.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+      if (returnFocus) { toggle.focus({ preventScroll: true }); }
+    }
+
+    function moveFocus(step) {
+      var index = items.indexOf(document.activeElement);
+      items[(index + step + items.length) % items.length].focus({ preventScroll: true });
+    }
+
+    toggle.addEventListener("click", function () { if (list.hidden) { open(); } else { close(false); } });
+
+    items.forEach(function (item) {
+      item.addEventListener("click", function () {
+        window.aeronSetTheme(item.getAttribute("data-theme-choice"));
+        markChosen();
+        close(true);
+      });
+    });
+
+    list.addEventListener("keydown", function (event) {
+      var keys = {
+        ArrowDown: function () { moveFocus(1); },
+        ArrowUp: function () { moveFocus(-1); },
+        Home: function () { items[0].focus({ preventScroll: true }); },
+        End: function () { items[items.length - 1].focus({ preventScroll: true }); },
+        Escape: function () { close(true); },
+        Tab: function () { close(false); }
+      };
+      if (!keys[event.key]) { return; }
+      if (event.key !== "Tab") { event.preventDefault(); }
+      keys[event.key]();
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!menu.contains(event.target)) { close(false); }
+    });
+
+    markChosen();
+  }
+})();
+</script>
     
   </body>
 </html>

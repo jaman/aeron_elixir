@@ -6,6 +6,9 @@ supervises, or connects to a driver that something else runs. It talks to the
 driver over the driver's shared-memory files, so an Elixir node can publish to
 and subscribe from the same streams as Java, C, C++ and Python Aeron clients.
 
+**Website:** [jaman.github.io/aeron_elixir](https://jaman.github.io/aeron_elixir/), with the
+benchmarks, runnable examples and the pyaeron API mapping.
+
 ## Architecture
 
 ```
